@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: ["helm-chart"]
+    branches: ["master"]
 jobs:
   build-esp:
     runs-on: ubuntu-latest
