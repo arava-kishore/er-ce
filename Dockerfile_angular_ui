@@ -2,10 +2,12 @@
 FROM node:14-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
-COPY ./plgx-angular-ui/package.json /app
-RUN npm install
-COPY ./plgx-angular-ui/. /app
-RUN npm run build -- --prod
+RUN mkdir -p plgx-angular-ui
+COPY ./plgx-angular-ui/. /app/plgx-angular-ui/
+RUN cd plgx-angular-ui && npm install
+RUN cd plgx-angular-ui && npm install -g @angular/cli@13.2.3
+RUN cd plgx-angular-ui && npm i gzipper@3.7.0 -g
+RUN cd plgx-angular-ui && ng build --prod --stats-json && gzipper --verbose ../dist
 
 # Stage 2
 FROM nginx:1.17.1-alpine
