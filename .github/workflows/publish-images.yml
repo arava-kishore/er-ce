@@ -101,7 +101,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/esp-fileserver:latest
           context: .
-          file: ./Dockerfile_angular_ui
+          file: ./plgx-angular-ui/Dockerfile
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   build-esp-rsyslogf:
