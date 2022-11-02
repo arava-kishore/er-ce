@@ -3,9 +3,9 @@ FROM node:14-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY plgx-angular-ui/package.json /app
-RUN cd plgx-angular-ui && npm install
+RUN cd app && npm install
 COPY ./plgx-angular-ui/. /app
-RUN cd plgx-angular-ui && npm run build -- --prod
+RUN cd app && npm run build -- --prod
 
 # Stage 2
 FROM nginx:1.17.1-alpine
